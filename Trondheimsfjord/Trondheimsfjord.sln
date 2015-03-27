@@ -13,7 +13,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Trondheimsfjord", "Trondhei
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Trondheimsfjord\Trondheimsfjord\Trondheimsfjord.projitems*{ae7fad50-e18b-41bf-9621-85c8e5e96f9c}*SharedItemsImports = 4
+		Trondheimsfjord\Trondheimsfjord\Trondheimsfjord.projitems*{e00c6d72-1fbf-46ac-bbf2-fe05f2e90a94}*SharedItemsImports = 4
 		Trondheimsfjord\Trondheimsfjord\Trondheimsfjord.projitems*{ef0433ac-ecc5-4f93-863e-69858b70502d}*SharedItemsImports = 13
+		Trondheimsfjord\Trondheimsfjord\Trondheimsfjord.projitems*{fe4bd1b2-e2d3-4b02-a681-624d9f4e05d5}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
