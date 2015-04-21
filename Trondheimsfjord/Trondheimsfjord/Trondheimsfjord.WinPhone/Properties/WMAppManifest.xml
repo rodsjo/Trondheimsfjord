@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{6359cfe7-6f9b-4f48-b013-0cf2becca80a}" Title="Trondheimsfjord.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Trondheimsfjord.WinPhone author" Description="Sample description" Publisher="Trondheimsfjord.WinPhone" PublisherID="{86e02306-53fe-43b5-ad6f-34a8f5b73437}">
+  <App xmlns="" ProductID="{f671b5cf-d379-447c-9d11-c41bf090bd60}" Title="Trondheimsfjord.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Trondheimsfjord.WinPhone author" Description="Sample description" Publisher="Trondheimsfjord.WinPhone" PublisherID="{6757c243-35d3-4747-9760-45bb1091d023}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>

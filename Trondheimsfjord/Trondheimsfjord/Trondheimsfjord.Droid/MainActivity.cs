@@ -12,7 +12,7 @@ namespace Trondheimsfjord.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new Trondheimsfjord.App());
+            LoadApplication(new App());
         }
     }
 }
