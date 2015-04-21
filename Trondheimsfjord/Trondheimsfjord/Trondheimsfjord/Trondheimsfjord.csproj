@@ -35,8 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Favorites.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Models\Port.cs" />
+    <Compile Include="Pages\FavoritesPage.cs" />
+    <Compile Include="Pages\MapPage.cs" />
+    <Compile Include="Pages\RootMaterDetailPage.cs" />
+    <Compile Include="Pages\RoutesPage.cs" />
+    <Compile Include="Pages\TicketsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

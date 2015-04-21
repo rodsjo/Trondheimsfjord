@@ -1,10 +1,10 @@
 ﻿using Xamarin.Forms;
 
-namespace Trondheimsfjord
+namespace Trondheimsfjord.Pages
 {
-    class Main : MasterDetailPage
+    internal class RootMaterDetailPage : MasterDetailPage
     {
-        public Main()
+        public RootMaterDetailPage()
         {
             Master = BuildMenu();
         }
@@ -13,7 +13,7 @@ namespace Trondheimsfjord
         {
             var menu = new ContentPage()
             {
-                Title = "Master",
+                Title = "Meny",
                 Content = new StackLayout()
                 {
                     Children =
@@ -22,22 +22,25 @@ namespace Trondheimsfjord
                         {
                             Text = "Favoritter",
                             Font = Font.SystemFontOfSize(NamedSize.Large),
-                            HorizontalOptions = LayoutOptions.Center,
-                            VerticalOptions = LayoutOptions.CenterAndExpand
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
                         },
                         new Button()
                         {
-                            Text = "Favoritter",
+                            Text = "Båtruter",
                             Font = Font.SystemFontOfSize(NamedSize.Large),
-                            HorizontalOptions = LayoutOptions.Center,
-                            VerticalOptions = LayoutOptions.CenterAndExpand
+                            HorizontalOptions = LayoutOptions.CenterAndExpand
                         },
                         new Button()
                         {
-                            Text = "Favoritter",
+                            Text = "Billetter",
                             Font = Font.SystemFontOfSize(NamedSize.Large),
-                            HorizontalOptions = LayoutOptions.Center,
-                            VerticalOptions = LayoutOptions.CenterAndExpand
+                            HorizontalOptions = LayoutOptions.CenterAndExpand
+                        },
+                        new Button()
+                        {
+                            Text = "Kart",
+                            Font = Font.SystemFontOfSize(NamedSize.Large),
+                            HorizontalOptions = LayoutOptions.CenterAndExpand
                         }
                     }
                 }

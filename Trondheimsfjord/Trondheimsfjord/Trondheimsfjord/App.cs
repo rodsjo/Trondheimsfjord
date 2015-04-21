@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Trondheimsfjord.Pages;
+using Xamarin.Forms;
 
 namespace Trondheimsfjord
 {
@@ -7,7 +8,7 @@ namespace Trondheimsfjord
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new Favorites());
+            MainPage = new NavigationPage(new FavoritesPage());
         }
 
         protected override void OnStart()
