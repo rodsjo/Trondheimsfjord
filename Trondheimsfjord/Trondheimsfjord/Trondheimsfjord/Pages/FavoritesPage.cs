@@ -1,37 +1,68 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Trondheimsfjord.Models;
+using Xamarin.Forms;
 
 namespace Trondheimsfjord.Pages
 {
     internal class FavoritesPage : RootMaterDetailPage
     {
+        private List<FavoriteRoute> _favoriteRoutes = Database.Database.GetFavoriteRoutes().ToList();
+        private bool _noFavorites;
+
         public FavoritesPage()
         {
-            Detail = new ContentPage()
+            if (!_favoriteRoutes.Any())
+                _noFavorites = true;
+
+            Detail = CreateGUI();
+        }
+
+        private Page CreateGUI()
+        {
+            if (_noFavorites)
             {
-                Title = "Favoritter",
-                Content = new StackLayout()
+                return new ContentPage()
                 {
-                    Children = 
+                    Title = "Favoritter",
+                    Content = new StackLayout
                     {
-                        new Label()
+                        Children =
                         {
-                            Text = "Trondheim - Vanvikan"
-                        },
-                        new Label()
-                        {
-                            Text = "Trondheim - Brekstad"
-                        },
-                        new Label()
-                        {
-                            Text = "Kristiansund - Lensvik"
-                        },
-                        new Label()
-                        {
-                            Text = "Hysnes - Brekstad"
+                            new Label
+                            {
+                                Text = "Sry, du har ingen favoritter",
+                                HorizontalOptions = LayoutOptions.Center,
+                                VerticalOptions = LayoutOptions.Center
+                            }
                         }
                     }
-                }
+                };
+            }
+
+            var routesListView = new ListView
+            {
+                ItemTemplate = new DataTemplate(typeof(TextCell)),
             };
+            routesListView.ItemTemplate.SetBinding(TextCell.TextProperty, "Name");
+            routesListView.ItemTemplate.SetBinding(TextCell.DetailProperty, "NextBoatLeavesIn");
+
+            routesListView.ItemsSource = _favoriteRoutes;
+
+            routesListView.ItemTapped += routesListView_ItemTapped;
+
+            return new ContentPage()
+            {
+                Title = "Favoritter",
+                Content = routesListView
+            };
+        }
+
+        void routesListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var favRoute = (FavoriteRoute)e.Item;
+            ((ListView)sender).SelectedItem = null; // Deselect the row
+            Navigation.PushAsync(new RoutePage(favRoute));
         }
     }
 }

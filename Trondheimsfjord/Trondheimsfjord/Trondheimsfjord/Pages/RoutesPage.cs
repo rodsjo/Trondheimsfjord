@@ -18,14 +18,27 @@ namespace Trondheimsfjord.Pages
         {
             var routesListView = new ListView
             {
-                ItemsSource = _routes
+                ItemTemplate = new DataTemplate(typeof (TextCell))
             };
+            routesListView.ItemTemplate.SetBinding(TextCell.TextProperty, "Name");
+            routesListView.ItemTemplate.SetBinding(TextCell.DetailProperty, "AtBRouteNrString");
+
+            routesListView.ItemsSource = _routes;
+            
+            routesListView.ItemTapped += routesListView_ItemTapped;
 
             return new ContentPage()
             {
                 Title = "Båtruter",
                 Content = routesListView
             };
+        }
+
+        void routesListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var route = (Route)e.Item;
+            ((ListView)sender).SelectedItem = null; // Deselect the row
+            Navigation.PushAsync(new RoutePage(route));
         }
     }
 }

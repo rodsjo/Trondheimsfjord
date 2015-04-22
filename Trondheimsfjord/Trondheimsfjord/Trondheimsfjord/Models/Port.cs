@@ -1,7 +1,7 @@
 ﻿namespace Trondheimsfjord.Models
 {
-    internal class Port
+    public class Port
     {
-        public string Name;
+        public string Name { get; set; }
     }
 }

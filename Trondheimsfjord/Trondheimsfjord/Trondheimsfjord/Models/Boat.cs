@@ -1,7 +1,7 @@
 ﻿namespace Trondheimsfjord.Models
 {
-    internal class Boat
+    public class Boat
     {
-        public string Name;
+        public string Name { get; set; }
     }
 }

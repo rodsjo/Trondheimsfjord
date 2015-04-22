@@ -2,10 +2,16 @@
 
 namespace Trondheimsfjord.Models
 {
-    internal class Route
+    public class Route
     {
-        public string Name;
-        public IList<Port> Ports;
-        public IList<Boat> Boats;
+        public string Name { get; set; }
+        public int AtBRouteNr { get; set; }
+
+        public string AtBRouteNrString
+        {
+            get { return "AtB rute " + AtBRouteNr; }
+        }
+        public IList<Port> Ports { get; set; }
+        public IList<Boat> Boats { get; set; }
     }
 }
