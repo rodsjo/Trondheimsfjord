@@ -21,5 +21,14 @@ namespace Trondheimsfjord.Database
                 new Port {Name = "Kristiansund"}
             };
         }
+
+        public static IList<Route> GetRoutes()
+        {
+            return new List<Route>
+            {
+                new Route {Name = "Trondheim - Vanvikan"},
+                new Route {Name = "Trondheim - Brekstad - Kristiansund"}
+            };
+        }
     }
 }

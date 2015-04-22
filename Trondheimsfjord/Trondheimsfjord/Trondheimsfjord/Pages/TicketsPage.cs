@@ -13,27 +13,59 @@ namespace Trondheimsfjord.Pages
 
         public TicketsPage()
         {
-            _fromPicker = new Picker();
+            Detail = CreateGUI();
+        }
+
+        private Page CreateGUI()
+        {
+            _fromPicker = new Picker { Title = "Fra" };
             foreach (var port in _ports)
             {
                 _fromPicker.Items.Add(port.Name);
             }
+            _fromPicker.SelectedIndex = 0;
 
-            _toPicker = new Picker();
+            _toPicker = new Picker
+            {
+                Title = "Til"
+            };
             foreach (var port in _ports)
             {
                 _toPicker.Items.Add(port.Name);
             }
+            _toPicker.SelectedIndex = 1;
 
-            Detail = new ContentPage()
+            return new ContentPage()
             {
                 Title = "Billetter",
                 Content = new StackLayout()
                 {
                     Children = 
                     {
-                        _fromPicker,
-                        _toPicker
+                        new StackLayout()
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label()
+                                {
+                                    Text = "Fra"
+                                },
+                                _fromPicker
+                            }
+                        },
+                        new StackLayout()
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label()
+                                {
+                                    Text = "Til"
+                                },
+                                _toPicker
+                            }
+                        },
                     }
                 }
             };
