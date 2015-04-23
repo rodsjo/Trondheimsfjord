@@ -1,4 +1,6 @@
-﻿namespace Trondheimsfjord.Models
+﻿using System;
+
+namespace Trondheimsfjord.Models
 {
     public class FavoriteRoute : Route
     {
@@ -10,9 +12,15 @@
             get { return From.Name + " - " + To.Name; }
         }
 
+        public DateTime NextDeparture { get; set; }
+        public int NextBoatLeavesInMinutes { get; set; }
         public string NextBoatLeavesIn
         {
-            get { return "Neste båt går om 25 minutter"; }
+            get
+            {
+
+                return "Neste båt går om 25 minutter";
+            }
         }
     }
 }
