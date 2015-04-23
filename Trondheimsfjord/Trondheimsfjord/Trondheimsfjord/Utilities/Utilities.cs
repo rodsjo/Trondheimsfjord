@@ -6,25 +6,28 @@ namespace Trondheimsfjord.Utilities
     {
         public static string NiceTime(TimeSpan time)
         {
-            if (time.Minutes == 0) //Only hours
+            var now = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0);
+            var delta = time.Subtract(now);
+
+            if (delta.Minutes == 0) //Only hours
             {
-                if (time.Hours == 1)
+                if (delta.Hours == 1)
                     return "1 time";
-                return time.Hours + " timer";
+                return delta.Hours + " timer";
             }
-            if (time.Hours == 0) //Only minutes
+            if (delta.Hours == 0) //Only minutes
             {
-                if (time.Minutes == 1)
+                if (delta.Minutes == 1)
                     return "1 minutt";
-                return time.Hours + " minutter";
+                return delta.Minutes + " minutter";
             }
 
             //If we have both hours and minutes
-            var s = time.Hours.ToString();
-            s += time.Hours == 1 ? " time og " : " timer og ";
+            var s = delta.Hours.ToString();
+            s += delta.Hours == 1 ? " time og " : " timer og ";
 
-            s += time.Minutes.ToString();
-            s += time.Minutes == 1 ? " minutt" : " minutter";
+            s += delta.Minutes.ToString();
+            s += delta.Minutes == 1 ? " minutt" : " minutter";
 
             return s;
         }

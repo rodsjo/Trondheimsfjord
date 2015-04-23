@@ -65,11 +65,11 @@ namespace Trondheimsfjord.Database
         {
             return new List<FavoriteRoute>
             {
-                new FavoriteRoute {From = new Port {Name = "Vanvikan"}, To = new Port {Name = "Trondheim"}},
-                new FavoriteRoute {From = new Port {Name = "Trondheim"}, To = new Port {Name = "Brekstad"}},
-                new FavoriteRoute {From = new Port {Name = "Trondheim"}, To = new Port {Name = "Kristansund"}},
-                new FavoriteRoute {From = new Port {Name = "Hysnes"}, To = new Port {Name = "Trondheim"}},
-                new FavoriteRoute {From = new Port {Name = "Kjørsviksbugen"}, To = new Port {Name = "Kristiansund"}},
+                new FavoriteRoute {AtBRouteNr = 810, From = new Port {Name = "Vanvikan"}, To = new Port {Name = "Trondheim"}},
+                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Brekstad"}},
+                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Kristiansund"}},
+                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Hysnes"}, To = new Port {Name = "Trondheim"}},
+                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Kjørsviksbugen"}, To = new Port {Name = "Kristiansund"}},
             };
         }
 
@@ -532,7 +532,8 @@ namespace Trondheimsfjord.Database
 
         public static Departure GetNextDeparture(int atbRouteNr, string fromPort, string toPort)
         {
-            return GetNextDeparture(atbRouteNr, fromPort, toPort, DateTime.Now.DayOfWeek, new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0));
+            var nextDeparture = GetNextDeparture(atbRouteNr, fromPort, toPort, DateTime.Now.DayOfWeek, new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0));
+            return nextDeparture;
         }
     }
 }

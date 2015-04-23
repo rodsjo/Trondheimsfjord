@@ -14,7 +14,8 @@
         {
             get
             {
-                return Database.Database.GetNextDeparture(AtBRouteNr, From.Name, To.Name);
+                var nextDeparture = Database.Database.GetNextDeparture(AtBRouteNr, From.Name, To.Name);
+                return nextDeparture;
             }
         }
         public string NextBoatLeavesIn
