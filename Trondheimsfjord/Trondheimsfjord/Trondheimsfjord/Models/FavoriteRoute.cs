@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Trondheimsfjord.Models
+﻿namespace Trondheimsfjord.Models
 {
     public class FavoriteRoute : Route
     {
@@ -12,14 +10,20 @@ namespace Trondheimsfjord.Models
             get { return From.Name + " - " + To.Name; }
         }
 
-        public DateTime NextDeparture { get; set; }
-        public int NextBoatLeavesInMinutes { get; set; }
+        public Departure NextDeparture
+        {
+            get
+            {
+                return Database.Database.GetNextDeparture(AtBRouteNr, From.Name, To.Name);
+            }
+        }
         public string NextBoatLeavesIn
         {
             get
             {
-
-                return "Neste båt går om 25 minutter";
+                var nextDeparture = NextDeparture;
+                var niceTimeString = Utilities.Utilities.NiceTime(nextDeparture.DepartureTime);
+                return "Neste båt går om " + niceTimeString;
             }
         }
     }
