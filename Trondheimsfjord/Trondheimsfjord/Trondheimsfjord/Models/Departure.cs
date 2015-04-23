@@ -7,8 +7,9 @@ namespace Trondheimsfjord.Models
         public Port Port { get; set; }
         public Destination Destination { get; set; }
         public DayOfWeek Weekday { get; set; }
-        public DateTime DepartureTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
+
+        public TimeSpan DepartureTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
     }
 
     public enum Destination
@@ -16,6 +17,7 @@ namespace Trondheimsfjord.Models
         Trondheim,
         Brekstad,
         Edøy,
-        Kristiansund
+        Kristiansund,
+        Vanvikan
     }
 }

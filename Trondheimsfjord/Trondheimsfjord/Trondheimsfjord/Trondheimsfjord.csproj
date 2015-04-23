@@ -37,6 +37,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Models\Boat.cs" />
+    <Compile Include="Models\Departure.cs" />
     <Compile Include="Models\FavoriteRoute.cs" />
     <Compile Include="Models\Port.cs" />
     <Compile Include="Models\Route.cs" />
