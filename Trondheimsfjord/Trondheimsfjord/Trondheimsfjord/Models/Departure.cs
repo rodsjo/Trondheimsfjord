@@ -9,6 +9,12 @@ namespace Trondheimsfjord.Models
         public DayOfWeek Weekday { get; set; }
 
         public TimeSpan DepartureTime { get; set; }
+
+        public string DepartureTimeString
+        {
+            get { return Utilities.Utilities.HourAndMinuteTime(DepartureTime); }
+        }
+
         public TimeSpan ArrivalTime { get; set; }
     }
 }

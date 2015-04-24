@@ -1,4 +1,5 @@
 ﻿using System;
+using Trondheimsfjord.Models;
 
 namespace Trondheimsfjord.Utilities
 {
@@ -30,6 +31,62 @@ namespace Trondheimsfjord.Utilities
             s += delta.Minutes == 1 ? " minutt" : " minutter";
 
             return s;
+        }
+
+        public static string GetRouteTableWeekdayTitle(Route route)
+        {
+            if (route.AtBRouteNr == 810)
+            {
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    return "Lørdag";
+                }
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    return "Søndag";
+                }
+                return "Mandag - fredag";
+            }
+            if (route.AtBRouteNr == 800)
+            {
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    return "Lørdag";
+                }
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    return "Søndag";
+                }
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+                {
+                    return "Fredag";
+                }
+                return "Mandag - torsdag";
+            }
+            return "";
+        }
+
+        internal static string HourAndMinuteTime(TimeSpan timeSpan)
+        {
+            string time;
+            if (timeSpan.Hours < 10)
+            {
+                time = "0" + timeSpan.Hours;
+            }
+            else
+            {
+                time = timeSpan.Hours.ToString();
+            }
+            time += ":";
+            if (timeSpan.Minutes < 10)
+            {
+                time += "0" + timeSpan.Minutes;
+            }
+            else
+            {
+                time += timeSpan.Minutes;
+            }
+            return time;
         }
     }
 }

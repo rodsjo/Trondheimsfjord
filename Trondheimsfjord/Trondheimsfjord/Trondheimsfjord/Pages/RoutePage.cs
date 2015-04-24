@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Trondheimsfjord.Models;
+using Trondheimsfjord.ViewCells;
 using Xamarin.Forms;
 
 namespace Trondheimsfjord.Pages
@@ -14,6 +15,10 @@ namespace Trondheimsfjord.Pages
         private readonly List<Port> _ports;
         private Picker _fromPicker;
         private Picker _toPicker;
+        private Button _favoriteBtn;
+        private Button _mapBtn;
+        private Button _ticketBtn;
+        private Button _routeTableBtn;
 
         public RoutePage(Route route)
         {
@@ -30,6 +35,7 @@ namespace Trondheimsfjord.Pages
             }
             
             Content = CreateGUI();
+            Title = route.Name;
         }
 
         private Layout CreateGUI()
@@ -76,28 +82,115 @@ namespace Trondheimsfjord.Pages
             _fromPicker.SelectedIndex = fromIndex;
             _toPicker.SelectedIndex = toIndex;
 
+            var routeTable = new ListView
+            {
+                ItemTemplate = new DataTemplate(typeof(DepartureCell)),
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+            var departures = Database.Database.GetDepartures(_route.AtBRouteNr, _route.From.Name, _route.To.Name, DateTime.Now.DayOfWeek).ToList();
+            routeTable.ItemsSource = departures;
+
+            var fromToGrid = new Grid
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                RowDefinitions =
+                {
+                    new RowDefinition {Height = GridLength.Auto},
+                    new RowDefinition {Height = GridLength.Auto}
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition {Width = GridLength.Auto},
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
+                }
+            };
+
+            var fromLabel = new Label
+            {
+                Text = "Fra",
+                VerticalOptions = LayoutOptions.Center,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
+            };
+            var toLabel = new Label
+            {
+                Text = "Til",
+                VerticalOptions = LayoutOptions.Center,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
+            };
+
+            fromToGrid.Children.Add(fromLabel, 0, 0);
+            fromToGrid.Children.Add(_fromPicker, 1, 0);
+            fromToGrid.Children.Add(toLabel, 0, 1);
+            fromToGrid.Children.Add(_toPicker, 1, 1);
+
+            var buttonGrid = new Grid
+            {
+                VerticalOptions = LayoutOptions.EndAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                RowDefinitions =
+                {
+                    new RowDefinition {Height = GridLength.Auto}
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
+                }
+            };
+            _routeTableBtn = new Button
+            {
+                Text = "Rutetabell",
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            _favoriteBtn = new Button
+            {
+                Text = "Favoritt",
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            _ticketBtn = new Button
+            {
+                Text = "Billett",
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            _mapBtn = new Button
+            {
+                Text = "Kart",
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+
+            buttonGrid.Children.Add(_routeTableBtn, 0, 0);
+            buttonGrid.Children.Add(_ticketBtn, 1, 0);
+            buttonGrid.Children.Add(_favoriteBtn, 2, 0);
+            buttonGrid.Children.Add(_mapBtn, 3, 0);
+
             return new StackLayout
             {
+                Orientation = StackOrientation.Vertical,
+                Padding = new Thickness(10),
                 Children = 
                 {
-                    new StackLayout
+                    fromToGrid,
+                    new Label
                     {
-                        Orientation = StackOrientation.Horizontal,
-                        Children =
+                        Text = "Neste båt går om"
+                    },
+                    new Label
+                    {
+                        Text = _route.NextDepartureNiceTime + " (kl. " + _route.NextDepartureHourAndMinute + ")",
+                        TextColor = Color.Accent
+                    },
+                    new Frame
+                    {
+                        Padding = new Thickness(0, 10, 0, 10),
+                        Content = new Label
                         {
-                            new Label { Text = "Fra", VerticalOptions = LayoutOptions.Center, FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))},
-                            _fromPicker
+                            Text = Utilities.Utilities.GetRouteTableWeekdayTitle(_route)
                         }
                     },
-					new StackLayout
-                    {
-                        Orientation = StackOrientation.Horizontal,
-                        Children =
-                        {
-                            new Label { Text = "Til", VerticalOptions = LayoutOptions.Center, FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))},
-                            _toPicker
-                        }
-                    },
+                    routeTable,
+                    buttonGrid
 				}
             };
         }

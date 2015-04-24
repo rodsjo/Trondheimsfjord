@@ -25,6 +25,7 @@ namespace Trondheimsfjord.Pages
                 return new ContentPage()
                 {
                     Title = "Favoritter",
+                    Padding = new Thickness(10),
                     Content = new StackLayout
                     {
                         Children =
@@ -45,16 +46,21 @@ namespace Trondheimsfjord.Pages
                 ItemTemplate = new DataTemplate(typeof(TextCell)),
             };
             routesListView.ItemTemplate.SetBinding(TextCell.TextProperty, "Name");
-            routesListView.ItemTemplate.SetBinding(TextCell.DetailProperty, "NextBoatLeavesIn");
-
+            routesListView.ItemTemplate.SetBinding(TextCell.DetailProperty, "NextDepartureNiceTime");
             routesListView.ItemsSource = _favoriteRoutes;
-
             routesListView.ItemTapped += routesListView_ItemTapped;
 
             return new ContentPage()
             {
                 Title = "Favoritter",
-                Content = routesListView
+                Padding = new Thickness(10),
+                Content = new ScrollView
+                {
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    Orientation = ScrollOrientation.Vertical,
+                    Content = routesListView
+                }
             };
         }
 

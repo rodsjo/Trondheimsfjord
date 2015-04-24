@@ -56,8 +56,8 @@ namespace Trondheimsfjord.Database
         {
             return new List<Route>
             {
-                new Route {Name = "Trondheim - Vanvikan", AtBRouteNr = 810},
-                new Route {Name = "Trondheim - Brekstad - Kristiansund", AtBRouteNr = 800}
+                new Route {Name = "Trondheim - Vanvikan", AtBRouteNr = 810, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Vanvikan"}},
+                new Route {Name = "Trondheim - Brekstad - Kristiansund", AtBRouteNr = 800, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Kristiansund"}}
             };
         }
 
@@ -449,28 +449,44 @@ namespace Trondheimsfjord.Database
             return new List<Departure>();
         }
 
-        public static IEnumerable<Departure> GetDepartures(int atbRouteNr, string port)
+        //NB! For all LINQ queries, we need to call ToList() on IEnumerables in order to evaluate the LINQ query from method to method
+        public static IEnumerable<Departure> GetDepartures(int atbRouteNr, string fromPort)
         {
-            return GetDepartures(atbRouteNr).Where(d => d.From.Name.ToLower() == port.ToLower());
+            var from = fromPort.ToLower();
+            var departures = GetDepartures(atbRouteNr).Where(port =>
+            {
+                var f = port.From.Name.ToLower();
+                return f == from;
+            }).ToList();
+            return departures;
         }
 
         public static IEnumerable<Departure> GetDepartures(int atbRouteNr, string fromPort, string toPort)
         {
-            return GetDepartures(atbRouteNr, fromPort).Where(d => d.To.Name.ToLower() == toPort.ToLower());
+            var to = toPort.ToLower();
+            var departures = GetDepartures(atbRouteNr, fromPort).Where(port =>
+            {
+                var t = port.To.Name.ToLower();
+                return t == to;
+            }).ToList();
+            return departures;
         }
 
         public static IEnumerable<Departure> GetDepartures(int atbRouteNr, string fromPort, string toPort, DayOfWeek weekDay)
         {
+            IEnumerable<Departure> departures;
             if (atbRouteNr == 810)
             {
                 if ((weekDay == DayOfWeek.Monday) ||
                     (weekDay == DayOfWeek.Saturday) ||
                     (weekDay == DayOfWeek.Sunday))
                 {
-                    return GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == weekDay);
+                    departures = GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == weekDay);
+                    return departures;
                 }
                 //If Tuesday, Wednesday, Thursday or Friday; use Monday-departures
-                return GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == DayOfWeek.Monday);
+                departures = GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == DayOfWeek.Monday).ToList();
+                return departures;
             }
             if (atbRouteNr == 800)
             {
@@ -479,10 +495,12 @@ namespace Trondheimsfjord.Database
                     (weekDay == DayOfWeek.Saturday) ||
                     (weekDay == DayOfWeek.Sunday))
                 {
-                    return GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == weekDay);
+                    departures = GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == weekDay);
+                    return departures;
                 }
                 //If Tuesday, Wednesday or Thursday; use Monday-departures
-                return GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == DayOfWeek.Monday);
+                departures = GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == DayOfWeek.Monday);
+                return departures;
             }
             return GetDepartures(atbRouteNr, fromPort, toPort).Where(d => d.Weekday == weekDay);
         }
