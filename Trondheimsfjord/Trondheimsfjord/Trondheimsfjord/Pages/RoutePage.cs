@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Trondheimsfjord.Models;
 using Xamarin.Forms;
@@ -36,7 +37,7 @@ namespace Trondheimsfjord.Pages
             _fromPicker = new Picker
             {
                 Title = "Fra",
-                HorizontalOptions = LayoutOptions.Fill
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             foreach (var port in _ports)
             {
@@ -46,7 +47,7 @@ namespace Trondheimsfjord.Pages
             _toPicker = new Picker
             {
                 Title = "Til",
-                HorizontalOptions = LayoutOptions.Fill
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             foreach (var port in _ports)
             {
@@ -82,22 +83,18 @@ namespace Trondheimsfjord.Pages
                     new StackLayout
                     {
                         Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.Fill,
-                        VerticalOptions = LayoutOptions.End,
                         Children =
                         {
-                            new Label { Text = "Fra" },
+                            new Label { Text = "Fra", VerticalOptions = LayoutOptions.Center, FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))},
                             _fromPicker
                         }
                     },
 					new StackLayout
                     {
                         Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.Fill,
-                        VerticalOptions = LayoutOptions.End,
                         Children =
                         {
-                            new Label { Text = "Til" },
+                            new Label { Text = "Til", VerticalOptions = LayoutOptions.Center, FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))},
                             _toPicker
                         }
                     },

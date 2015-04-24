@@ -16,7 +16,7 @@ namespace Trondheimsfjord.Pages
                 Title = "Meny",
                 Content = new StackLayout()
                 {
-                    BackgroundColor = Color.FromHex("#555"),
+                    BackgroundColor = Color.FromHex("#333"),
                     Children =
                     {
                         new Button()
