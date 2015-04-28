@@ -62,6 +62,43 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\bell.png" />
+    <EmbeddedResource Include="Images\bell_blue.png" />
+    <EmbeddedResource Include="Images\bicycle.png" />
+    <EmbeddedResource Include="Images\bicycle_blue.png" />
+    <EmbeddedResource Include="Images\bus.png" />
+    <EmbeddedResource Include="Images\bus_blue.png" />
+    <EmbeddedResource Include="Images\clock.png" />
+    <EmbeddedResource Include="Images\clock_blue.png" />
+    <EmbeddedResource Include="Images\delete.png" />
+    <EmbeddedResource Include="Images\delete_blue.png" />
+    <EmbeddedResource Include="Images\delete_red.png" />
+    <EmbeddedResource Include="Images\error.png" />
+    <EmbeddedResource Include="Images\error_blue.png" />
+    <EmbeddedResource Include="Images\error_red.png" />
+    <EmbeddedResource Include="Images\facebook.png" />
+    <EmbeddedResource Include="Images\facebook_blue.png" />
+    <EmbeddedResource Include="Images\favorite.png" />
+    <EmbeddedResource Include="Images\favorite_blue.png" />
+    <EmbeddedResource Include="Images\favorite_yellow.png" />
+    <EmbeddedResource Include="Images\location.png" />
+    <EmbeddedResource Include="Images\location_blue.png" />
+    <EmbeddedResource Include="Images\mail.png" />
+    <EmbeddedResource Include="Images\mail_blue.png" />
+    <EmbeddedResource Include="Images\map.png" />
+    <EmbeddedResource Include="Images\map_blue.png" />
+    <EmbeddedResource Include="Images\person.png" />
+    <EmbeddedResource Include="Images\person_blue.png" />
+    <EmbeddedResource Include="Images\port.png" />
+    <EmbeddedResource Include="Images\port_blue.png" />
+    <EmbeddedResource Include="Images\routetable.png" />
+    <EmbeddedResource Include="Images\routetable_blue.png" />
+    <EmbeddedResource Include="Images\ticket.png" />
+    <EmbeddedResource Include="Images\ticket_blue.png" />
+    <EmbeddedResource Include="Images\warning.png" />
+    <EmbeddedResource Include="Images\warning_blue.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.3.1.6296\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

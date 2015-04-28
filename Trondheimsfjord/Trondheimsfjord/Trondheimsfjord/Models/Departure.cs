@@ -8,7 +8,18 @@ namespace Trondheimsfjord.Models
         public Port To { get; set; }
         public DayOfWeek Weekday { get; set; }
 
+        public Departure()
+        {
+            AlarmOn = false;
+        }
+
+        public bool AlarmOn { get; set; }
         public TimeSpan DepartureTime { get; set; }
+
+        public string AlarmImageSource
+        {
+            get { return AlarmOn ? "Trondheimsfjord.Images.bell_blue.png" : "Trondheimsfjord.Images.bell.png"; }
+        }
 
         public string DepartureTimeString
         {

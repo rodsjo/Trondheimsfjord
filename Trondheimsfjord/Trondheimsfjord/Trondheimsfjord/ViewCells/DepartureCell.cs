@@ -6,22 +6,27 @@ namespace Trondheimsfjord.ViewCells
     {
         public DepartureCell()
         {
+
             var timeLabel = new Label
             {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                TextColor = Color.Accent
+                HorizontalOptions = LayoutOptions.Start,
+                TextColor = Color.Accent,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
             };
             timeLabel.SetBinding(Label.TextProperty, "DepartureTimeString");
 
-            var alarmBtn = new Button
+            var alarmBtn = new Image
             {
-                HorizontalOptions = LayoutOptions.End
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                Source = ImageSource.FromResource("Trondheimsfjord.Images.bell.png")
             };
-            alarmBtn.SetBinding(Button.TextProperty, new Binding("DepartureTimeString"));
+            alarmBtn.SetBinding(Image.SourceProperty, new Binding("AlarmImageSource"));
 
             View = new StackLayout
             {
+                Padding = new Thickness(10, 5, 30, 5),
                 Orientation = StackOrientation.Horizontal,
+                VerticalOptions = LayoutOptions.Center,
                 Children = { timeLabel, alarmBtn }
             };
         }

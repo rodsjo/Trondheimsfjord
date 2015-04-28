@@ -13,12 +13,14 @@ namespace Trondheimsfjord.Pages
         private FavoriteRoute _favRoute;
         public bool IsFavorite;
         private readonly List<Port> _ports;
+        
         private Picker _fromPicker;
         private Picker _toPicker;
-        private Button _favoriteBtn;
-        private Button _mapBtn;
-        private Button _ticketBtn;
-        private Button _routeTableBtn;
+
+        private Image _favoriteBtn;
+        private Image _mapBtn;
+        private Image _ticketBtn;
+        private Image _routeTableBtn;
 
         public RoutePage(Route route)
         {
@@ -139,25 +141,21 @@ namespace Trondheimsfjord.Pages
                     new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
                 }
             };
-            _routeTableBtn = new Button
+            _routeTableBtn = new Image
             {
-                Text = "Rutetabell",
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                Source = ImageSource.FromResource("Trondheimsfjord.Images.routetable.png")
             };
-            _favoriteBtn = new Button
+            _favoriteBtn = new Image
             {
-                Text = "Favoritt",
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                Source = ImageSource.FromResource("Trondheimsfjord.Images.favorite.png")
             };
-            _ticketBtn = new Button
+            _ticketBtn = new Image
             {
-                Text = "Billett",
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                Source = ImageSource.FromResource("Trondheimsfjord.Images.ticket.png")
             };
-            _mapBtn = new Button
+            _mapBtn = new Image
             {
-                Text = "Kart",
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                Source = ImageSource.FromResource("Trondheimsfjord.Images.map.png")
             };
 
             buttonGrid.Children.Add(_routeTableBtn, 0, 0);
