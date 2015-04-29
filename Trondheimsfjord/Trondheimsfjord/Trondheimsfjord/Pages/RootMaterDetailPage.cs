@@ -7,6 +7,7 @@ namespace Trondheimsfjord.Pages
         public RootMaterDetailPage()
         {
             Master = BuildMenu();
+            
         }
 
         private Page BuildMenu()
@@ -16,36 +17,52 @@ namespace Trondheimsfjord.Pages
                 Title = "Meny",
                 Content = new StackLayout()
                 {
-                    BackgroundColor = Color.FromHex("#333"),
+                    BackgroundColor = Color.FromHex("#ccc"),
                     Children =
                     {
-                        new Button()
+                        new Button
                         {
                             Text = "Favoritter",
                             Font = Font.SystemFontOfSize(NamedSize.Default),
                             HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() => Navigation.PushAsync(new FavoritesPage()))
+                            Command = new Command(() =>
+                            {
+                                IsPresented = false;
+                                Navigation.PushAsync(new FavoritesPage());
+                            })
                         },
-                        new Button()
+                        new Button
                         {
                             Text = "Båtruter",
                             Font = Font.SystemFontOfSize(NamedSize.Default),
                             HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() => Navigation.PushAsync(new RoutesPage()))
+                            Command = new Command(() =>
+                            {
+                                IsPresented = false;
+                                Navigation.PushAsync(new RoutesPage());
+                            })
                         },
-                        new Button()
+                        new Button
                         {
                             Text = "Billetter",
                             Font = Font.SystemFontOfSize(NamedSize.Default),
                             HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() => Navigation.PushAsync(new TicketsPage()))
+                            Command = new Command(() =>
+                            {
+                                IsPresented = false;
+                                Navigation.PushAsync(new TicketsPage());
+                            })
                         },
-                        new Button()
+                        new Button
                         {
                             Text = "Kart",
                             Font = Font.SystemFontOfSize(NamedSize.Default),
                             HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() => Navigation.PushAsync(new MapPage()))
+                            Command = new Command(() =>
+                            {
+                                IsPresented = false;
+                                Navigation.PushAsync(new MapPage());
+                            })
                         }
                     }
                 }
