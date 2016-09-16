@@ -7,8 +7,8 @@ namespace Trondheimsfjord.Pages
 {
     internal class FavoritesPage : RootMaterDetailPage
     {
-        private List<FavoriteRoute> _favoriteRoutes = Database.Database.GetFavoriteRoutes().ToList();
-        private bool _noFavorites;
+        private readonly List<FavoriteRoute> _favoriteRoutes = Database.Database.GetFavoriteRoutes().ToList();
+        private readonly bool _noFavorites;
 
         public FavoritesPage()
         {
@@ -32,7 +32,7 @@ namespace Trondheimsfjord.Pages
                         {
                             new Label
                             {
-                                Text = "Sry, du har ingen favoritter",
+                                Text = "Sorry, du har ingen favoritter",
                                 HorizontalOptions = LayoutOptions.Center,
                                 VerticalOptions = LayoutOptions.Center
                             }
