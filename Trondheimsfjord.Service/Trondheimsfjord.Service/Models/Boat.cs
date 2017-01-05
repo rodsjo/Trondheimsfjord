@@ -18,10 +18,10 @@ namespace Trondheimsfjord.Service.Models
         public int Imo { get; private set; }
 
         [DataMemberAttribute]
-        public double Latitude { get; set; }
+        public string Latitude { get; set; }
 
         [DataMemberAttribute]
-        public double Longitude { get; set; }
+        public string Longitude { get; set; }
 
         [DataMemberAttribute]
         public double SpeedKmh { get; set; }

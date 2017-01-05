@@ -8,7 +8,7 @@ namespace Trondheimsfjord
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new FavoritesPage());
+            MainPage = new NavigationPage(new MapPage());
         }
 
         protected override void OnStart()

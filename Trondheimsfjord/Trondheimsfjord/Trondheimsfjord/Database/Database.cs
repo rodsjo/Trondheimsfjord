@@ -61,18 +61,6 @@ namespace Trondheimsfjord.Database
             };
         }
 
-        public static IList<FavoriteRoute> GetFavoriteRoutes()
-        {
-            return new List<FavoriteRoute>
-            {
-                new FavoriteRoute {AtBRouteNr = 810, From = new Port {Name = "Vanvikan"}, To = new Port {Name = "Trondheim"}},
-                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Brekstad"}},
-                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Trondheim"}, To = new Port {Name = "Kristiansund"}},
-                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Hysnes"}, To = new Port {Name = "Trondheim"}},
-                new FavoriteRoute {AtBRouteNr = 800, From = new Port {Name = "Kjørsviksbugen"}, To = new Port {Name = "Kristiansund"}},
-            };
-        }
-
         public static IEnumerable<Departure> GetDepartures(int atbRouteNr)
         {
             if (atbRouteNr == 810)

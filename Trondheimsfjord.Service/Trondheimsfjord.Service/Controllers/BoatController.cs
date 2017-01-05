@@ -9,7 +9,6 @@ using Trondheimsfjord.Service.Models;
 
 namespace Trondheimsfjord.Service.Controllers
 {
-    [EnableCors(origins: "http://localhost:51319/", headers: "*", methods: "*")]
     public class BoatController : ApiController
     {
         private List<Boat> _boats;
@@ -43,7 +42,6 @@ namespace Trondheimsfjord.Service.Controllers
         {
             var boat = _boats.Find(b => b.Id == id);
             var url = AISHUB_URL_VESSEL + "?mmsi=" + boat.Mmsi;
-            var page1 = _scraper.NavigateToPage(new Uri("http://www.google.com"));
             var page = _scraper.NavigateToPage(new Uri(url));
 
             var latitudeNode = page.Html.CssSelect("tr:nth-of-type(4) td:nth-of-type(4)").First();
@@ -51,7 +49,9 @@ namespace Trondheimsfjord.Service.Controllers
 
             var longitudeNode = page.Html.CssSelect("tr:nth-of-type(5) td:nth-of-type(4)").First();
             var longitude = longitudeNode.InnerText;
-            
+
+            boat.Latitude = latitude;
+            boat.Longitude = longitude;
 
             return boat;
         }

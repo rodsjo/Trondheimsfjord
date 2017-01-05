@@ -10,32 +10,16 @@ namespace Trondheimsfjord.Pages
     public class RoutePage : ContentPage
     {
         private Route _route;
-        private FavoriteRoute _favRoute;
-        public bool IsFavorite;
         private readonly List<Port> _ports;
         
         private Picker _fromPicker;
         private Picker _toPicker;
 
-        private Image _favoriteBtn;
-        private Image _mapBtn;
-        private Image _ticketBtn;
-        private Image _routeTableBtn;
-
         public RoutePage(Route route)
         {
             _route = route;
-            if (_route is FavoriteRoute)
-            {
-                IsFavorite = true;
-                _favRoute = (FavoriteRoute) _route;
-                _ports = Database.Database.GetPorts().ToList();
-            }
-            else
-            {
-                _ports = Database.Database.GetPorts(_route.AtBRouteNr).ToList();
-            }
-            
+            _ports = Database.Database.GetPorts(_route.AtBRouteNr).ToList();
+
             Content = CreateGUI();
             Title = route.Name;
         }
@@ -66,21 +50,6 @@ namespace Trondheimsfjord.Pages
             var fromIndex = 0;
             var toIndex = _toPicker.Items.Count - 1;
 
-            if (IsFavorite)
-            {
-                for (var i = 0; i < _fromPicker.Items.Count; i++)
-                {
-                    var portName = _fromPicker.Items[i];
-                    if (portName == _favRoute.From.Name)
-                        fromIndex = i;
-                }
-                for (var i = 0; i < _toPicker.Items.Count; i++)
-                {
-                    var portName = _toPicker.Items[i];
-                    if (portName == _favRoute.To.Name)
-                        toIndex = i;
-                }
-            }
             _fromPicker.SelectedIndex = fromIndex;
             _toPicker.SelectedIndex = toIndex;
 
@@ -124,45 +93,7 @@ namespace Trondheimsfjord.Pages
             fromToGrid.Children.Add(_fromPicker, 1, 0);
             fromToGrid.Children.Add(toLabel, 0, 1);
             fromToGrid.Children.Add(_toPicker, 1, 1);
-
-            var buttonGrid = new Grid
-            {
-                VerticalOptions = LayoutOptions.EndAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                RowDefinitions =
-                {
-                    new RowDefinition {Height = GridLength.Auto}
-                },
-                ColumnDefinitions =
-                {
-                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
-                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
-                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
-                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
-                }
-            };
-            _routeTableBtn = new Image
-            {
-                Source = ImageSource.FromResource("Trondheimsfjord.Images.routetable.png")
-            };
-            _favoriteBtn = new Image
-            {
-                Source = ImageSource.FromResource("Trondheimsfjord.Images.favorite.png")
-            };
-            _ticketBtn = new Image
-            {
-                Source = ImageSource.FromResource("Trondheimsfjord.Images.ticket.png")
-            };
-            _mapBtn = new Image
-            {
-                Source = ImageSource.FromResource("Trondheimsfjord.Images.map.png")
-            };
-
-            buttonGrid.Children.Add(_routeTableBtn, 0, 0);
-            buttonGrid.Children.Add(_ticketBtn, 1, 0);
-            buttonGrid.Children.Add(_favoriteBtn, 2, 0);
-            buttonGrid.Children.Add(_mapBtn, 3, 0);
-
+            
             return new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
@@ -187,8 +118,7 @@ namespace Trondheimsfjord.Pages
                             Text = Utilities.Utilities.GetRouteTableWeekdayTitle(_route)
                         }
                     },
-                    routeTable,
-                    buttonGrid
+                    routeTable
 				}
             };
         }

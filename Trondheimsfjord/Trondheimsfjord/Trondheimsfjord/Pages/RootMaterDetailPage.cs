@@ -22,17 +22,6 @@ namespace Trondheimsfjord.Pages
                     {
                         new Button
                         {
-                            Text = "Favoritter",
-                            Font = Font.SystemFontOfSize(NamedSize.Default),
-                            HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() =>
-                            {
-                                IsPresented = false;
-                                Navigation.PushAsync(new FavoritesPage());
-                            })
-                        },
-                        new Button
-                        {
                             Text = "Båtruter",
                             Font = Font.SystemFontOfSize(NamedSize.Default),
                             HorizontalOptions = LayoutOptions.Fill,
@@ -40,17 +29,6 @@ namespace Trondheimsfjord.Pages
                             {
                                 IsPresented = false;
                                 Navigation.PushAsync(new RoutesPage());
-                            })
-                        },
-                        new Button
-                        {
-                            Text = "Billetter",
-                            Font = Font.SystemFontOfSize(NamedSize.Default),
-                            HorizontalOptions = LayoutOptions.Fill,
-                            Command = new Command(() =>
-                            {
-                                IsPresented = false;
-                                Navigation.PushAsync(new TicketsPage());
                             })
                         },
                         new Button
